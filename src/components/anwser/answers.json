@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_anwser_answers",
+  "info": {
+    "displayName": "Answers",
+    "icon": "plus"
+  },
+  "options": {},
+  "attributes": {
+    "descricao": {
+      "type": "text"
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "imagem": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

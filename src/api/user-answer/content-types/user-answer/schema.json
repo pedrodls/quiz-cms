@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_answers",
+  "info": {
+    "singularName": "user-answer",
+    "pluralName": "user-answers",
+    "displayName": "User-Answer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_answers"
+    },
+    "answer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::answer.answer",
+      "inversedBy": "user_answers"
+    }
+  }
+}

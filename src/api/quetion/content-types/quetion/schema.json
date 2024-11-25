@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quetions",
+  "info": {
+    "singularName": "quetion",
+    "pluralName": "quetions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "text"
+    },
+    "answers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::answer.answer",
+      "mappedBy": "quetion"
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::topic.topic"
+    },
+    "mode": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::mode.mode",
+      "inversedBy": "questions"
+    }
+  }
+}

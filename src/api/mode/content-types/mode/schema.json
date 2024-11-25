@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "modes",
+  "info": {
+    "singularName": "mode",
+    "pluralName": "modes",
+    "displayName": "Mode",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quetion.quetion",
+      "mappedBy": "mode"
+    },
+    "scores": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::score.score",
+      "mappedBy": "mode"
+    }
+  }
+}

@@ -369,6 +369,193 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
+  collectionName: 'answers';
+  info: {
+    description: '';
+    displayName: 'Answer';
+    pluralName: 'answers';
+    singularName: 'answer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    isValid: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::answer.answer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    quetion: Schema.Attribute.Relation<'manyToOne', 'api::quetion.quetion'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_answers: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-answer.user-answer'
+    >;
+  };
+}
+
+export interface ApiModeMode extends Struct.CollectionTypeSchema {
+  collectionName: 'modes';
+  info: {
+    description: '';
+    displayName: 'Mode';
+    pluralName: 'modes';
+    singularName: 'mode';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::mode.mode'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    questions: Schema.Attribute.Relation<'oneToMany', 'api::quetion.quetion'>;
+    scores: Schema.Attribute.Relation<'oneToMany', 'api::score.score'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuetionQuetion extends Struct.CollectionTypeSchema {
+  collectionName: 'quetions';
+  info: {
+    description: '';
+    displayName: 'Question';
+    pluralName: 'quetions';
+    singularName: 'quetion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answers: Schema.Attribute.Relation<'oneToMany', 'api::answer.answer'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::quetion.quetion'
+    > &
+      Schema.Attribute.Private;
+    mode: Schema.Attribute.Relation<'manyToOne', 'api::mode.mode'>;
+    publishedAt: Schema.Attribute.DateTime;
+    topic: Schema.Attribute.Relation<'oneToOne', 'api::topic.topic'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiScoreScore extends Struct.CollectionTypeSchema {
+  collectionName: 'scores';
+  info: {
+    displayName: 'score';
+    pluralName: 'scores';
+    singularName: 'score';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::score.score'> &
+      Schema.Attribute.Private;
+    mode: Schema.Attribute.Relation<'manyToOne', 'api::mode.mode'>;
+    publishedAt: Schema.Attribute.DateTime;
+    record: Schema.Attribute.Integer;
+    topic: Schema.Attribute.Relation<'manyToOne', 'api::topic.topic'>;
+    total: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiTopicTopic extends Struct.CollectionTypeSchema {
+  collectionName: 'topics';
+  info: {
+    displayName: 'Topic';
+    pluralName: 'topics';
+    singularName: 'topic';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::topic.topic'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    scores: Schema.Attribute.Relation<'oneToMany', 'api::score.score'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUserAnswerUserAnswer extends Struct.CollectionTypeSchema {
+  collectionName: 'user_answers';
+  info: {
+    displayName: 'User-Answer';
+    pluralName: 'user-answers';
+    singularName: 'user-answer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answer: Schema.Attribute.Relation<'manyToOne', 'api::answer.answer'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-answer.user-answer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -856,9 +1043,14 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    scores: Schema.Attribute.Relation<'oneToMany', 'api::score.score'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_answers: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-answer.user-answer'
+    >;
     username: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -878,6 +1070,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::answer.answer': ApiAnswerAnswer;
+      'api::mode.mode': ApiModeMode;
+      'api::quetion.quetion': ApiQuetionQuetion;
+      'api::score.score': ApiScoreScore;
+      'api::topic.topic': ApiTopicTopic;
+      'api::user-answer.user-answer': ApiUserAnswerUserAnswer;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

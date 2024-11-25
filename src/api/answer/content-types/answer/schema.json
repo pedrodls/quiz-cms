@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "answers",
+  "info": {
+    "singularName": "answer",
+    "pluralName": "answers",
+    "displayName": "Answer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "quetion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::quetion.quetion",
+      "inversedBy": "answers"
+    },
+    "user_answers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-answer.user-answer",
+      "mappedBy": "answer"
+    },
+    "description": {
+      "type": "text"
+    },
+    "isValid": {
+      "type": "boolean"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
